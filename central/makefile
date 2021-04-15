@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 LDFLAGS = 
 BLDDIR = .
 INCDIR = $(BLDDIR)/inc
