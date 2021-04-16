@@ -43,6 +43,23 @@ void print_menu(WINDOW *menu_win, int highlight) {
 }
 
 void print_info() {
+  mvprintw(2, 0, "                                ");
+  mvprintw(3, 0, "                                ");
+  mvprintw(4, 0, "                                ");
+  mvprintw(2, 0, "                                ");
+
+  mvprintw(2, 20, "                                ");
+  mvprintw(3, 20, "                                ");
+  mvprintw(4, 20, "                                ");
+  mvprintw(5, 20, "                                ");
+
+  mvprintw(2, 45, "                                ");
+  mvprintw(3, 45, "                                ");
+  mvprintw(4, 45, "                                ");
+  mvprintw(5, 45, "                                ");
+
+  mvprintw(10, 0, "                 ");
+  
   mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
   mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
   mvprintw(4, 0, "L2: %s", lampada[0].c_str());
