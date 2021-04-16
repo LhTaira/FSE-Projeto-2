@@ -1,9 +1,8 @@
-#include <form.h>
-#include <ncurses.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "../inc/menu.hpp"
+#include "../inc/global.hpp"
+
+using namespace std;
+
 #define WIDTH 30
 #define HEIGHT 10
 
@@ -11,16 +10,18 @@ int startx = 0;
 int starty = 0;
 int choice = 0;
 WINDOW *menu_win;
+time_t timer, timer2;
 
-char *choices[] = {
-    "Ativar lampada 1",
-    "Ativar lampada 2",
-    "Ativar ar condicionado 1",
-    "Ativar ar condicionado 2",
+string choices[] = {
+    "Acionar lampada 1",
+    "Acionar lampada 2",
+    "Acionar ar condicionado 1",
+    "Acionar ar condicionado 2",
+    "Acionar alarme",
     "Sair",
 };
 
-int n_choices = sizeof(choices) / sizeof(char *);
+int n_choices = sizeof(choices) / sizeof(string);
 
 void print_menu(WINDOW *menu_win, int highlight) {
   int x, y, i;
@@ -32,16 +33,41 @@ void print_menu(WINDOW *menu_win, int highlight) {
     if (highlight == i + 1) /* High light the present choice */
     {
       wattron(menu_win, A_REVERSE);
-      mvwprintw(menu_win, y, x, "%s", choices[i]);
+      mvwprintw(menu_win, y, x, "%s", choices[i].c_str());
       wattroff(menu_win, A_REVERSE);
     } else
-      mvwprintw(menu_win, y, x, "%s", choices[i]);
+      mvwprintw(menu_win, y, x, "%s", choices[i].c_str());
     ++y;
   }
   wrefresh(menu_win);
 }
 
+void print_info() {
+  mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
+  mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
+  mvprintw(4, 0, "L2: %s", lampada[0].c_str());
+  mvprintw(5, 0, "L2: %s", lampada[1].c_str());
+
+  mvprintw(2, 20, "Presenca1: %s", presenca[0].c_str());
+  mvprintw(3, 20, "Presenca2: %s", presenca[1].c_str());
+  mvprintw(4, 20, "Abertura1: %s", abertura[0].c_str());
+  mvprintw(5, 20, "Abertura2: %s", abertura[1].c_str());
+
+  mvprintw(2, 45, "Abertura3: %s", abertura[2].c_str());
+  mvprintw(3, 45, "Abertura4: %s", abertura[3].c_str());
+  mvprintw(4, 45, "Abertura5: %s", abertura[4].c_str());
+  mvprintw(5, 45, "Abertura6: %s", abertura[5].c_str());
+
+  mvprintw(10, 0, "Alarme: %s", alarme.c_str());
+
+  time(&timer2);
+  mvprintw(11, 0, "Tempo %d", timer2 - timer );
+  refresh();
+}
+
 int choose() {
+  halfdelay(1);
+  time(&timer);
   choice = 0;
   int highlight = 1;
   int c;
@@ -54,6 +80,9 @@ int choose() {
   refresh();
   print_menu(menu_win, highlight);
   while (1) {
+    print_info();
+    mvprintw(12, 0, "asdaFAESF");
+    refresh();
     c = wgetch(menu_win);
     switch (c) {
       case KEY_UP:
@@ -95,6 +124,7 @@ void doMenu() {
   do {
     choose();
     if (choice == 1) {
+      send_message((string) "192.168.15.8", (unsigned short) 4000, (string) "lol");
       //   screen2();
       clear();
     }
@@ -111,8 +141,8 @@ void doMenu() {
   endwin();
 }
 
-int main() {
-  doMenu();
-  while(1);
-  return 0;
-}
+// int main() {
+//   doMenu();
+//   while(1);
+//   return 0;
+// }
