@@ -11,3 +11,6 @@ bool alarme;
 unsigned short porta_ouvir;
 string ip_central;
 unsigned short porta_central;
+
+float temperatura = 69.69;
+float umidade = 42.04;

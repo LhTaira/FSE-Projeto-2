@@ -47,7 +47,7 @@ void print_info() {
   mvprintw(2, 0, "                                ");
   mvprintw(3, 0, "                                ");
   mvprintw(4, 0, "                                ");
-  mvprintw(2, 0, "                                ");
+  mvprintw(5, 0, "                                ");
 
   mvprintw(2, 20, "                                ");
   mvprintw(3, 20, "                                ");
@@ -60,10 +60,12 @@ void print_info() {
   mvprintw(5, 45, "                                ");
 
   mvprintw(10, 0, "                 ");
+  mvprintw(11, 0, "                 ");
+  mvprintw(12, 0, "                 ");
 
   mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
   mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
-  mvprintw(4, 0, "L2: %s", lampada[0].c_str());
+  mvprintw(4, 0, "L1: %s", lampada[0].c_str());
   mvprintw(5, 0, "L2: %s", lampada[1].c_str());
 
   mvprintw(2, 20, "Presenca1: %s", presenca[0].c_str());
@@ -78,8 +80,9 @@ void print_info() {
 
   mvprintw(10, 0, "Alarme: %s", alarme.c_str());
 
-  time(&timer2);
-  mvprintw(11, 0, "Tempo %d", timer2 - timer);
+  // time(&timer2);
+  mvprintw(11, 0, "Umidade: %s", umidade.c_str());
+  mvprintw(12, 0, "Temperatura: %s", temperatura.c_str());
   refresh();
 }
 

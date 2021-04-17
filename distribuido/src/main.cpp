@@ -44,5 +44,6 @@ int main(int argc, char *argv[]) {
       }
     }
     make_and_send_message(ip_central, porta_central);
+    make_temperature_humidity_message(ip_central, porta_central);
   }
 }

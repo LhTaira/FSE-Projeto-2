@@ -52,7 +52,7 @@ bool send_message(string IP_servidor, unsigned short servidorPorta,
       cout << "Não recebeu o total de bytes enviados" << endl;
     totalBytesRecebidos += bytesRecebidos;
     buffer[totalBytesRecebidos] = '\0';
-    cout << string(buffer) << endl;
+    // cout << string(buffer) << endl;
     // printf("%s\n", buffer);
   }
 

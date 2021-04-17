@@ -5,7 +5,7 @@ using namespace std;
 void TrataClienteTCP(int socketCliente) {
   char buffer[16];
   int tamanhoRecebido;
-  int j=0;
+  int j = 0;
 
   if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
     cout << "Erro no rcv()" << endl;
@@ -17,45 +17,52 @@ void TrataClienteTCP(int socketCliente) {
     if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
       cout << "Erro no rcv()" << endl;
   }
-  
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      arCondicionado[i] = "Ligado";
-    } else {
-      arCondicionado[i] = "Desligado";
-    }
-  }
 
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      lampada[i] = "Ligado";
-    } else {
-      lampada[i] = "Desligado";
+  if (buffer[0] == 'e') {
+    buffer[6] = '\0';
+    temperatura = string(&buffer[1]);
+  } else if (buffer[0] == 'u') {
+    buffer[6] = '\0';
+    umidade = string(&buffer[1]);
+  } else {
+    for (int i = 0; i < 2; i++) {
+      if (buffer[j++] == 't') {
+        arCondicionado[i] = "Ligado";
+      } else {
+        arCondicionado[i] = "Desligado";
+      }
     }
-  }
 
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      presenca[i] = "Ligado";
-    } else {
-      presenca[i] = "Desligado";
+    for (int i = 0; i < 2; i++) {
+      if (buffer[j++] == 't') {
+        lampada[i] = "Ligado";
+      } else {
+        lampada[i] = "Desligado";
+      }
     }
-  }
 
-  for(int i=0; i<6; i++) {
-    if(buffer[j++] == 't') {
-      abertura[i] = "Ligado";
-    } else {
-      abertura[i] = "Desligado";
+    for (int i = 0; i < 2; i++) {
+      if (buffer[j++] == 't') {
+        presenca[i] = "Ligado";
+      } else {
+        presenca[i] = "Desligado";
+      }
     }
-  }
 
-  if(buffer[j] == 't') {
+    for (int i = 0; i < 6; i++) {
+      if (buffer[j++] == 't') {
+        abertura[i] = "Ligado";
+      } else {
+        abertura[i] = "Desligado";
+      }
+    }
+
+    if (buffer[j] == 't') {
       alarme = "Ligado";
     } else {
       alarme = "Desligado";
     }
-
+  }
 }
 
 void server(unsigned short servidorPorta) {

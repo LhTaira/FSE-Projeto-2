@@ -8,6 +8,9 @@ string presenca[2];
 string abertura[6];
 string alarme;
 
+string temperatura;
+string umidade;
+
 unsigned short porta_ouvir;
 string ip_distribuido;
 unsigned short porta_distribuido;

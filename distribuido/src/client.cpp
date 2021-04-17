@@ -1,60 +1,90 @@
 #include "../inc/client.hpp"
+
 #include "../inc/global.hpp"
 
 using namespace std;
 
+void make_temperature_humidity_message(string IP_servidor,
+                                       unsigned short servidorPorta) {
+  string temperature_message, humidity_message;
+  if (temperatura >= 10.0) {
+    stringstream stream;
+    stream << fixed << setprecision(2) << temperatura;
+    temperature_message = "e" + stream.str();
+  } else {
+    stringstream stream;
+    stream << fixed << setprecision(2) << temperatura;
+    temperature_message = "e0" + stream.str();
+  }
+
+  send_message(IP_servidor, servidorPorta, temperature_message);
+
+  if (umidade >= 10.0) {
+    stringstream stream;
+    stream << fixed << setprecision(2) << umidade;
+    humidity_message = "u" + stream.str();
+  } else {
+    stringstream stream;
+    stream << fixed << setprecision(2) << umidade;
+    humidity_message = "u0" + stream.str();
+  }
+
+  send_message(IP_servidor, servidorPorta, humidity_message);
+}
+
 void make_and_send_message(string IP_servidor, unsigned short servidorPorta) {
   char code[14];
   int j = 0;
-  for(int i=0; i<2; i++) {
-    if(arCondicionado[i]) {
+  for (int i = 0; i < 2; i++) {
+    if (arCondicionado[i]) {
       code[j++] = 't';
     } else {
       code[j++] = 'f';
     }
   }
 
-  for(int i=0; i<2; i++) {
-    if(lampada[i]) {
+  for (int i = 0; i < 2; i++) {
+    if (lampada[i]) {
       code[j++] = 't';
     } else {
       code[j++] = 'f';
     }
   }
 
-  for(int i=0; i<2; i++) {
-    if(presenca[i]) {
+  for (int i = 0; i < 2; i++) {
+    if (presenca[i]) {
       code[j++] = 't';
     } else {
       code[j++] = 'f';
     }
   }
 
-  for(int i=0; i<6; i++) {
-    if(abertura[i]) {
+  for (int i = 0; i < 6; i++) {
+    if (abertura[i]) {
       code[j++] = 't';
     } else {
       code[j++] = 'f';
     }
   }
 
-  if(alarme) {
-      code[j++] = 't';
-    } else {
-      code[j++] = 'f';
-    }
+  if (alarme) {
+    code[j++] = 't';
+  } else {
+    code[j++] = 'f';
+  }
 
   code[j] = '\0';
 
   send_message(IP_servidor, servidorPorta, string(code));
 }
 
-bool send_message(string IP_servidor, unsigned short servidorPorta, string mensagem) {
+bool send_message(string IP_servidor, unsigned short servidorPorta,
+                  string mensagem) {
   int clienteSocket;
   struct sockaddr_in servidorAddr;
-//   unsigned short servidorPorta;
-//   char *IP_servidor;
-//   char *mensagem;
+  //   unsigned short servidorPorta;
+  //   char *IP_servidor;
+  //   char *mensagem;
   char buffer[16];
   unsigned int tamanhoMensagem;
   int bytesRecebidos;
@@ -90,7 +120,7 @@ bool send_message(string IP_servidor, unsigned short servidorPorta, string mensa
 
   totalBytesRecebidos = 0;
 
-  while (totalBytesRecebidos < (int) tamanhoMensagem) {
+  while (totalBytesRecebidos < (int)tamanhoMensagem) {
     // cout << "Fronk\n";
     if ((bytesRecebidos = recv(clienteSocket, buffer, 16 - 1, 0)) <= 0)
       cout << "Não recebeu o total de bytes enviados" << endl;
@@ -101,5 +131,5 @@ bool send_message(string IP_servidor, unsigned short servidorPorta, string mensa
   }
 
   close(clienteSocket);
-    return true;
+  return true;
 }

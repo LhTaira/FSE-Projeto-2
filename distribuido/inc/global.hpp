@@ -14,4 +14,7 @@ extern unsigned short porta_ouvir;
 extern string ip_central;
 extern unsigned short porta_central;
 
+extern float temperatura;
+extern float umidade;
+
 #endif
