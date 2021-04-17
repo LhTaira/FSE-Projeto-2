@@ -1,5 +1,5 @@
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#ifndef GLOBALCENT_H
+#define GLOBALCENT_H
 #include <string>
 
 using namespace std;

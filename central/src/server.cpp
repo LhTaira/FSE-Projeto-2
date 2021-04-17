@@ -5,6 +5,7 @@ using namespace std;
 void TrataClienteTCP(int socketCliente) {
   char buffer[16];
   int tamanhoRecebido;
+  int j=0;
 
   if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
     cout << "Erro no rcv()" << endl;
@@ -16,33 +17,44 @@ void TrataClienteTCP(int socketCliente) {
     if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
       cout << "Erro no rcv()" << endl;
   }
-  string ligado = "Ligado";
-
-  if(!ligado.compare(string(buffer))) {
-    for (int i = 0; i < 2; i++) {
-        arCondicionado[i] = "desligado";
-        lampada[i] = "desligada";
-        presenca[i] = "desligado";
-      }
-
-      for (int i = 0; i < 6; i++) {
-        abertura[i] = "desligado";
-      }
-
-      alarme = "desligado";
-  } else {
-    for (int i = 0; i < 2; i++) {
-        arCondicionado[i] = "Ligado";
-        lampada[i] = "Ligado";
-        presenca[i] = "Ligado";
-      }
-
-      for (int i = 0; i < 6; i++) {
-        abertura[i] = "Ligado";
-      }
-
-      alarme = "Ligado";
+  
+  for(int i=0; i<2; i++) {
+    if(buffer[j++] == 't') {
+      arCondicionado[i] = "Ligado";
+    } else {
+      arCondicionado[i] = "Desligado";
+    }
   }
+
+  for(int i=0; i<2; i++) {
+    if(buffer[j++] == 't') {
+      lampada[i] = "Ligado";
+    } else {
+      lampada[i] = "Desligado";
+    }
+  }
+
+  for(int i=0; i<2; i++) {
+    if(buffer[j++] == 't') {
+      presenca[i] = "Ligado";
+    } else {
+      presenca[i] = "Desligado";
+    }
+  }
+
+  for(int i=0; i<6; i++) {
+    if(buffer[j++] == 't') {
+      abertura[i] = "Ligado";
+    } else {
+      abertura[i] = "Desligado";
+    }
+  }
+
+  if(buffer[j] == 't') {
+      alarme = "Ligado";
+    } else {
+      alarme = "Desligado";
+    }
 
 }
 
@@ -53,13 +65,6 @@ void server(unsigned short servidorPorta) {
   struct sockaddr_in clienteAddr;
   // unsigned short servidorPorta;
   unsigned int clienteLength;
-
-  //   if (argc != 2) {
-  //     cout << "Uso: " << argv[0] << "<Porta>" << endl;
-  //     exit(1);
-  //   }
-
-  //   servidorPorta = atoi(argv[1]);
 
   if ((servidorSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
     cout << "Falha no socket do servidor" << endl;
