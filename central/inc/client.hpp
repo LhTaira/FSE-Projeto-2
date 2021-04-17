@@ -1,5 +1,5 @@
-#ifndef CLIENTDIST_H
-#define CLIENTDIST_H
+#ifndef CLIENCENT_H
+#define CLIENCENT_H
 
 #include <arpa/inet.h>
 #include <stdlib.h>
@@ -11,7 +11,6 @@
 
 using namespace std;
 
-void make_and_send_message(string IP_servidor, unsigned short servidorPorta);
 bool send_message(string IP_Servidor, unsigned short servidorPorta, string mensagem);
 
 #endif

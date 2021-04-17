@@ -1,4 +1,5 @@
 #include "../inc/menu.hpp"
+
 #include "../inc/global.hpp"
 
 using namespace std;
@@ -59,7 +60,7 @@ void print_info() {
   mvprintw(5, 45, "                                ");
 
   mvprintw(10, 0, "                 ");
-  
+
   mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
   mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
   mvprintw(4, 0, "L2: %s", lampada[0].c_str());
@@ -78,7 +79,7 @@ void print_info() {
   mvprintw(10, 0, "Alarme: %s", alarme.c_str());
 
   time(&timer2);
-  mvprintw(11, 0, "Tempo %d", timer2 - timer );
+  mvprintw(11, 0, "Tempo %d", timer2 - timer);
   refresh();
 }
 
@@ -98,7 +99,7 @@ int choose() {
   print_menu(menu_win, highlight);
   while (1) {
     print_info();
-    mvprintw(12, 0, "asdaFAESF");
+    // mvprintw(12, 0, "asdaFAESF");
     refresh();
     c = wgetch(menu_win);
     switch (c) {
@@ -126,8 +127,7 @@ int choose() {
         break;
     }
     print_menu(menu_win, highlight);
-    if (choice != 0) /* User did a choice come out of the infinite loop */
-      break;
+    if (choice != 0) break;
   }
   return choice;
 }
@@ -136,30 +136,33 @@ void doMenu() {
   initscr();
   clear();
   noecho();
-  cbreak(); /* Line buffering disabled. pass on everything */
-
+  cbreak();
   do {
     choose();
-    if (choice == 1) {
-      send_message((string) "192.168.15.8", (unsigned short) 4000, (string) "lol");
-      //   screen2();
-      clear();
-    }
-    if (choice == 2) {
-      //   screenForm();
-      clear();
+    switch (choice) {
+      case 1:
+        send_message(ip_distribuido, porta_distribuido, (string) "l1");
+        break;
+      case 2:
+        send_message(ip_distribuido, porta_distribuido, (string) "l2");
+        break;
+      case 3:
+        send_message(ip_distribuido, porta_distribuido, (string) "a1");
+        break;
+      case 4:
+        send_message(ip_distribuido, porta_distribuido, (string) "a2");
+        break;
+      case 5:
+        send_message(ip_distribuido, porta_distribuido, (string) "a");
+        break;
+      default:
+        break;
     }
 
-  } while (choice != 3);
-  // pthread_kill(controllerThread, 9);
+  } while (choice != 6);
+
   refresh();
   clear();
   clrtoeol();
   endwin();
 }
-
-// int main() {
-//   doMenu();
-//   while(1);
-//   return 0;
-// }

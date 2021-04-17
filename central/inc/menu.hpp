@@ -10,6 +10,7 @@
 #include <string>
 #include <time.h>
 #include "../inc/socket.hpp"
+#include "../inc/client.hpp"
 
 
 extern int startx;

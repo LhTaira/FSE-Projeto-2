@@ -5,7 +5,6 @@ using namespace std;
 void TrataClienteTCP(int socketCliente) {
   char buffer[16];
   int tamanhoRecebido;
-  int j=0;
 
   if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
     cout << "Erro no rcv()" << endl;
@@ -17,45 +16,42 @@ void TrataClienteTCP(int socketCliente) {
     if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
       cout << "Erro no rcv()" << endl;
   }
-  
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      arCondicionado[i] = "Ligado";
+  buffer[2] = '\0';
+  string message(buffer);
+  printf("%s\n", buffer);
+  // cout << message  << " " << tamanhoRecebido<< endl;
+
+  if (message.compare(string("l1")) == 0) {
+    if(lampada[0]) {
+      lampada[0] = false;
     } else {
-      arCondicionado[i] = "Desligado";
+      lampada[0] = true;
+    }
+  } else if (message.compare(string("l2")) == 0) {
+    if(lampada[1]) {
+      lampada[1] = false;
+    } else {
+      lampada[1] = true;
+    }
+  } else if (message.compare(string("a1")) == 0) {
+    if(arCondicionado[0]) {
+      arCondicionado[0] = false;
+    } else {
+      arCondicionado[0] = true;
+    }
+  } else if (message.compare(string("a2")) == 0) {
+    if(arCondicionado[1]) {
+      arCondicionado[1] = false;
+    } else {
+      arCondicionado[1] = true;
+    }
+  } else if (buffer[0] == 'a') {
+    if(alarme) {
+      alarme = false;
+    } else {
+      alarme = true;
     }
   }
-
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      lampada[i] = "Ligado";
-    } else {
-      lampada[i] = "Desligado";
-    }
-  }
-
-  for(int i=0; i<2; i++) {
-    if(buffer[j++] == 't') {
-      presenca[i] = "Ligado";
-    } else {
-      presenca[i] = "Desligado";
-    }
-  }
-
-  for(int i=0; i<6; i++) {
-    if(buffer[j++] == 't') {
-      abertura[i] = "Ligado";
-    } else {
-      abertura[i] = "Desligado";
-    }
-  }
-
-  if(buffer[j] == 't') {
-      alarme = "Ligado";
-    } else {
-      alarme = "Desligado";
-    }
-
 }
 
 void server(unsigned short servidorPorta) {
@@ -86,7 +82,7 @@ void server(unsigned short servidorPorta) {
                                 &clienteLength)) < 0)
       cout << "Falha no accept" << endl;
 
-    // cout << "Conexão do Cliente " << inet_ntoa(clienteAddr.sin_addr) << endl;
+    cout << "Conexão do Cliente " << inet_ntoa(clienteAddr.sin_addr) << endl;
 
     TrataClienteTCP(socketCliente);
     close(socketCliente);

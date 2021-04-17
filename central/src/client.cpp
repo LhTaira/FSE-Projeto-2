@@ -1,13 +1,16 @@
-#include "../inc/socket.hpp"
+#include "../inc/client.hpp"
+
+#include "../inc/global.hpp"
 
 using namespace std;
 
-bool send_message(string IP_servidor, unsigned short servidorPorta, string mensagem) {
+bool send_message(string IP_servidor, unsigned short servidorPorta,
+                  string mensagem) {
   int clienteSocket;
   struct sockaddr_in servidorAddr;
-//   unsigned short servidorPorta;
-//   char *IP_servidor;
-//   char *mensagem;
+  //   unsigned short servidorPorta;
+  //   char *IP_servidor;
+  //   char *mensagem;
   char buffer[16];
   unsigned int tamanhoMensagem;
   int bytesRecebidos;
@@ -43,7 +46,7 @@ bool send_message(string IP_servidor, unsigned short servidorPorta, string mensa
 
   totalBytesRecebidos = 0;
 
-  while (totalBytesRecebidos < (int) tamanhoMensagem) {
+  while (totalBytesRecebidos < (int)tamanhoMensagem) {
     // cout << "Fronk\n";
     if ((bytesRecebidos = recv(clienteSocket, buffer, 16 - 1, 0)) <= 0)
       cout << "Não recebeu o total de bytes enviados" << endl;
@@ -54,5 +57,5 @@ bool send_message(string IP_servidor, unsigned short servidorPorta, string mensa
   }
 
   close(clienteSocket);
-    return true;
+  return true;
 }

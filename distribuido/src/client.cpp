@@ -1,6 +1,53 @@
 #include "../inc/client.hpp"
+#include "../inc/global.hpp"
 
 using namespace std;
+
+void make_and_send_message(string IP_servidor, unsigned short servidorPorta) {
+  char code[14];
+  int j = 0;
+  for(int i=0; i<2; i++) {
+    if(arCondicionado[i]) {
+      code[j++] = 't';
+    } else {
+      code[j++] = 'f';
+    }
+  }
+
+  for(int i=0; i<2; i++) {
+    if(lampada[i]) {
+      code[j++] = 't';
+    } else {
+      code[j++] = 'f';
+    }
+  }
+
+  for(int i=0; i<2; i++) {
+    if(presenca[i]) {
+      code[j++] = 't';
+    } else {
+      code[j++] = 'f';
+    }
+  }
+
+  for(int i=0; i<6; i++) {
+    if(abertura[i]) {
+      code[j++] = 't';
+    } else {
+      code[j++] = 'f';
+    }
+  }
+
+  if(alarme) {
+      code[j++] = 't';
+    } else {
+      code[j++] = 'f';
+    }
+
+  code[j] = '\0';
+
+  send_message(IP_servidor, servidorPorta, string(code));
+}
 
 bool send_message(string IP_servidor, unsigned short servidorPorta, string mensagem) {
   int clienteSocket;

@@ -11,4 +11,9 @@ extern string presenca[2];
 extern string abertura[6];
 extern string alarme;
 
+extern unsigned short porta_ouvir;
+extern string ip_distribuido;
+extern unsigned short porta_distribuido;
+
+
 #endif

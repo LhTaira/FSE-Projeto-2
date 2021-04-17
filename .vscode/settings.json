@@ -2,7 +2,10 @@
     "files.associations": {
         "*.cpp": "cpp",
         "iostream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "future": "cpp",
+        "system_error": "cpp",
+        "thread": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
