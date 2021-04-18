@@ -8,6 +8,7 @@
 #include "../inc/global.hpp"
 #include "../inc/menu.hpp"
 #include "../inc/server.hpp"
+#include "../inc/alarm.hpp"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ int main(int argc, char *argv[]) {
   porta_distribuido = (unsigned short)atoi(argv[3]);
 
   thread t(server, porta_ouvir);
+
+  //signal verify_alarm
   doMenu();
 
   // while (true) {

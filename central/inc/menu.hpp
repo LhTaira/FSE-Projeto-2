@@ -6,12 +6,14 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <string>
 #include <time.h>
-#include "../inc/socket.hpp"
-#include "../inc/client.hpp"
+#include <unistd.h>
 
+#include <string>
+
+#include "../inc/client.hpp"
+#include "../inc/socket.hpp"
+#include "log.hpp"
 
 extern int startx;
 extern int starty;

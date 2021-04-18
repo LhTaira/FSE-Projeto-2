@@ -10,6 +10,9 @@ extern string lampada[2];
 extern string presenca[2];
 extern string abertura[6];
 extern string alarme;
+extern bool sound_alarm;
+extern bool previous_sound_alarm;
+
 
 extern string temperatura;
 extern string umidade;

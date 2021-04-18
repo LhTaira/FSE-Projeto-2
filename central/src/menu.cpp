@@ -145,18 +145,23 @@ void doMenu() {
     switch (choice) {
       case 1:
         send_message(ip_distribuido, porta_distribuido, (string) "l1");
+        log("aciona_lampada_1");
         break;
       case 2:
         send_message(ip_distribuido, porta_distribuido, (string) "l2");
+        log("aciona_lampada_2");
         break;
       case 3:
         send_message(ip_distribuido, porta_distribuido, (string) "a1");
+        log("aciona_ar_condicionado_1");
         break;
       case 4:
         send_message(ip_distribuido, porta_distribuido, (string) "a2");
+        log("aciona_ar_condicionado_2");
         break;
       case 5:
         send_message(ip_distribuido, porta_distribuido, (string) "a");
+        log("aciona_alarme");
         break;
       default:
         break;
