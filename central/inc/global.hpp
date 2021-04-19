@@ -1,6 +1,7 @@
 #ifndef GLOBALCENT_H
 #define GLOBALCENT_H
 #include <string>
+ #include <unistd.h>
 
 using namespace std;
 

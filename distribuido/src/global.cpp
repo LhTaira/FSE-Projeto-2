@@ -3,7 +3,7 @@
 using namespace std;
 
 bool arCondicionado[2];
-bool lampada[2];
+bool lampada[4];
 bool presenca[2];
 bool abertura[6];
 bool alarme;

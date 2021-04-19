@@ -1,17 +1,25 @@
 #include <string.h>
 #include <time.h>
+#include <wiringPi.h>
+// #include <signal.h>
 
 #include <iostream>
 #include <string>
 #include <thread>
 
-#include "client.hpp"
-#include "server.hpp"
-#include "global.hpp"
+#include "../inc/bme280.hpp"
+#include "../inc/client.hpp"
+#include "../inc/global.hpp"
+#include "../inc/gpio.hpp"
+#include "../inc/server.hpp"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
+  // signal(SIGPIPE, SIG_IGN);
+  bme280Init(1, 0x76);
+  wiringPiSetup();
+
   if (!string("-h").compare(argv[1]) || argc != 4) {
     cout << "Uso: ./bin/bin <Porta para ouvir> <IP servidor central> <Porta "
             "servidor central>"
@@ -30,19 +38,12 @@ int main(int argc, char *argv[]) {
   while (1) {
     time(&timer2);
     while (timer == time(&timer2)) {
-      usleep(100);
+      usleep(10000);
     }
     time(&timer);
 
-    if ((timer % 2) == 0) {
-      for (int i = 0; i < 6; i++) {
-        abertura[i] = true;
-      }
-    } else {
-      for (int i = 0; i < 6; i++) {
-        abertura[i] = false;
-      }
-    }
+    get_bme();
+    update_all_sensors();
     make_and_send_message(ip_central, porta_central);
     make_temperature_humidity_message(ip_central, porta_central);
   }

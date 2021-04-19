@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+pid_t this_pid = getpid();
 string arCondicionado[2];
 string lampada[4];
 string presenca[2];

@@ -28,9 +28,10 @@ int main(int argc, char *argv[]) {
   createLog();
 
   thread t(server, porta_ouvir);
+  signal(SIGUSR1, verify_alarm);
+  // signal(SIGPIPE, SIG_IGN);
 
   // signal verify_alarm
-  signal(SIGUSR1, verify_alarm);
   doMenu();
 
   // while (true) {

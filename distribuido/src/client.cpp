@@ -43,7 +43,7 @@ void make_and_send_message(string IP_servidor, unsigned short servidorPorta) {
     }
   }
 
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 4; i++) {
     if (lampada[i]) {
       code[j++] = 't';
     } else {
@@ -67,11 +67,11 @@ void make_and_send_message(string IP_servidor, unsigned short servidorPorta) {
     }
   }
 
-  if (alarme) {
-    code[j++] = 't';
-  } else {
-    code[j++] = 'f';
-  }
+  // if (alarme) {
+  //   code[j++] = 't';
+  // } else {
+  //   code[j++] = 'f';
+  // }
 
   code[j] = '\0';
 
@@ -114,7 +114,7 @@ bool send_message(string IP_servidor, unsigned short servidorPorta,
   tamanhoMensagem = mensagem.size();
 
   if (send(clienteSocket, mensagem.c_str(), tamanhoMensagem, 0) !=
-      tamanhoMensagem)
+      (int) tamanhoMensagem)
     cout << "Erro no envio: numero de bytes enviados diferente do esperado"
          << endl;
 

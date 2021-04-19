@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "global.hpp"
+#include "gpio.hpp"
 
 using namespace std;
 

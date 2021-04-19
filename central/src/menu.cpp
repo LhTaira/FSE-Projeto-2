@@ -71,8 +71,8 @@ void print_info() {
   mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
   mvprintw(4, 0, "L1: %s", lampada[0].c_str());
   mvprintw(5, 0, "L2: %s", lampada[1].c_str());
-  mvprintw(6, 0, "L1: %s", lampada[2].c_str());
-  mvprintw(7, 0, "L2: %s", lampada[3].c_str());
+  mvprintw(6, 0, "L3: %s", lampada[2].c_str());
+  mvprintw(7, 0, "L4: %s", lampada[3].c_str());
 
   mvprintw(2, 20, "Presenca1: %s", presenca[0].c_str());
   mvprintw(3, 20, "Presenca2: %s", presenca[1].c_str());

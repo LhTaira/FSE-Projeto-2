@@ -66,6 +66,7 @@ void TrataClienteTCP(int socketCliente) {
 }
 
 void server(unsigned short servidorPorta) {
+  signal(SIGUSR1, SIG_IGN);
   int servidorSocket;
   int socketCliente;
   struct sockaddr_in servidorAddr;

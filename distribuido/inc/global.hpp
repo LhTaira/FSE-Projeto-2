@@ -5,7 +5,7 @@
 using namespace std;
 
 extern bool arCondicionado[2];
-extern bool lampada[2];
+extern bool lampada[4];
 extern bool presenca[2];
 extern bool abertura[6];
 extern bool alarme;

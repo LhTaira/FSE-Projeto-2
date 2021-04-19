@@ -22,36 +22,49 @@ void TrataClienteTCP(int socketCliente) {
   // cout << message  << " " << tamanhoRecebido<< endl;
 
   if (message.compare(string("l1")) == 0) {
-    if(lampada[0]) {
-      lampada[0] = false;
+    if (lampada[0]) {
+      write_pin(PIN_LAMPADA_1, false);
     } else {
-      lampada[0] = true;
+      write_pin(PIN_LAMPADA_1, true);
     }
   } else if (message.compare(string("l2")) == 0) {
-    if(lampada[1]) {
-      lampada[1] = false;
+    if (lampada[1]) {
+      write_pin(PIN_LAMPADA_2, false);
     } else {
-      lampada[1] = true;
+      write_pin(PIN_LAMPADA_2, true);
+    }
+  } else if (message.compare(string("l3")) == 0) {
+    if (lampada[1]) {
+      write_pin(PIN_LAMPADA_3, false);
+    } else {
+      write_pin(PIN_LAMPADA_3, true);
+    }
+  } else if (message.compare(string("l4")) == 0) {
+    if (lampada[1]) {
+      write_pin(PIN_LAMPADA_4, false);
+    } else {
+      write_pin(PIN_LAMPADA_4, true);
     }
   } else if (message.compare(string("a1")) == 0) {
-    if(arCondicionado[0]) {
-      arCondicionado[0] = false;
+    if (arCondicionado[0]) {
+      write_pin(PIN_AR_CONDICIONADO_1, false);
     } else {
-      arCondicionado[0] = true;
+      write_pin(PIN_AR_CONDICIONADO_1, true);
     }
   } else if (message.compare(string("a2")) == 0) {
-    if(arCondicionado[1]) {
-      arCondicionado[1] = false;
+    if (arCondicionado[1]) {
+      write_pin(PIN_AR_CONDICIONADO_2, false);
     } else {
-      arCondicionado[1] = true;
-    }
-  } else if (buffer[0] == 'a') {
-    if(alarme) {
-      alarme = false;
-    } else {
-      alarme = true;
+      write_pin(PIN_AR_CONDICIONADO_2, true);
     }
   }
+  //  else if (buffer[0] == 'a') {
+  //   if (alarme) {
+  //     alarme = false;
+  //   } else {
+  //     alarme = true;
+  //   }
+  // }
 }
 
 void server(unsigned short servidorPorta) {
