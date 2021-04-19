@@ -4,6 +4,6 @@
 #include "global.hpp"
 #include "log.hpp"
 
-void verify_alarm();
+void verify_alarm(int sig);
 
 #endif

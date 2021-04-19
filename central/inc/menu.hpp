@@ -11,8 +11,7 @@
 
 #include <string>
 
-#include "../inc/client.hpp"
-#include "../inc/socket.hpp"
+#include "client.hpp"
 #include "log.hpp"
 
 extern int startx;

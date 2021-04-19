@@ -57,11 +57,11 @@ void TrataClienteTCP(int socketCliente) {
       }
     }
 
-    if (buffer[j] == 't') {
-      alarme = "Ligado";
-    } else {
-      alarme = "Desligado";
-    }
+    // if (buffer[j] == 't') {
+    //   alarme = "Ligado";
+    // } else {
+    //   alarme = "Desligado";
+    // }
   }
 }
 
@@ -97,6 +97,7 @@ void server(unsigned short servidorPorta) {
 
     TrataClienteTCP(socketCliente);
     close(socketCliente);
+    kill(getppid(), SIGUSR1);
   }
   close(servidorSocket);
 }

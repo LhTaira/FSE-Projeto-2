@@ -1,5 +1,6 @@
 #include <time.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include <iostream>
 #include <string>
@@ -23,10 +24,13 @@ int main(int argc, char *argv[]) {
   porta_ouvir = (unsigned short)atoi(argv[1]);
   ip_distribuido = string(argv[2]);
   porta_distribuido = (unsigned short)atoi(argv[3]);
+  
+  createLog();
 
   thread t(server, porta_ouvir);
 
-  //signal verify_alarm
+  // signal verify_alarm
+  signal(SIGUSR1, verify_alarm);
   doMenu();
 
   // while (true) {

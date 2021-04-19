@@ -16,6 +16,8 @@ time_t timer, timer2;
 string choices[] = {
     "Acionar lampada 1",
     "Acionar lampada 2",
+    "Acionar lampada 3",
+    "Acionar lampada 4",
     "Acionar ar condicionado 1",
     "Acionar ar condicionado 2",
     "Acionar alarme",
@@ -48,6 +50,8 @@ void print_info() {
   mvprintw(3, 0, "                                ");
   mvprintw(4, 0, "                                ");
   mvprintw(5, 0, "                                ");
+  mvprintw(6, 0, "                                ");
+  mvprintw(7, 0, "                                ");
 
   mvprintw(2, 20, "                                ");
   mvprintw(3, 20, "                                ");
@@ -67,6 +71,8 @@ void print_info() {
   mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
   mvprintw(4, 0, "L1: %s", lampada[0].c_str());
   mvprintw(5, 0, "L2: %s", lampada[1].c_str());
+  mvprintw(6, 0, "L1: %s", lampada[2].c_str());
+  mvprintw(7, 0, "L2: %s", lampada[3].c_str());
 
   mvprintw(2, 20, "Presenca1: %s", presenca[0].c_str());
   mvprintw(3, 20, "Presenca2: %s", presenca[1].c_str());
@@ -145,29 +151,42 @@ void doMenu() {
     switch (choice) {
       case 1:
         send_message(ip_distribuido, porta_distribuido, (string) "l1");
-        log("aciona_lampada_1");
+        log_event("aciona_lampada_1");
         break;
       case 2:
         send_message(ip_distribuido, porta_distribuido, (string) "l2");
-        log("aciona_lampada_2");
+        log_event("aciona_lampada_2");
         break;
       case 3:
-        send_message(ip_distribuido, porta_distribuido, (string) "a1");
-        log("aciona_ar_condicionado_1");
+        send_message(ip_distribuido, porta_distribuido, (string) "l3");
+        log_event("aciona_lampada_3");
         break;
       case 4:
-        send_message(ip_distribuido, porta_distribuido, (string) "a2");
-        log("aciona_ar_condicionado_2");
+        send_message(ip_distribuido, porta_distribuido, (string) "l4");
+        log_event("aciona_lampada_4");
         break;
       case 5:
-        send_message(ip_distribuido, porta_distribuido, (string) "a");
-        log("aciona_alarme");
+        send_message(ip_distribuido, porta_distribuido, (string) "a1");
+        log_event("aciona_ar_condicionado_1");
+        break;
+      case 6:
+        send_message(ip_distribuido, porta_distribuido, (string) "a2");
+        log_event("aciona_ar_condicionado_2");
+        break;
+      case 7:
+        // send_message(ip_distribuido, porta_distribuido, (string) "a");
+        if(string("Ligado").compare(alarme) == 0) {
+          alarme = "Desligado";
+        } else {
+          alarme = "Ligado";
+        }
+        log_event("aciona_alarme");
         break;
       default:
         break;
     }
 
-  } while (choice != 6);
+  } while (choice != 8);
 
   refresh();
   clear();

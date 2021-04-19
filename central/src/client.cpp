@@ -40,7 +40,7 @@ bool send_message(string IP_servidor, unsigned short servidorPorta,
   tamanhoMensagem = mensagem.size();
 
   if (send(clienteSocket, mensagem.c_str(), tamanhoMensagem, 0) !=
-      tamanhoMensagem)
+      (int) tamanhoMensagem)
     cout << "Erro no envio: numero de bytes enviados diferente do esperado"
          << endl;
 
