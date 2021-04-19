@@ -1,23 +1,23 @@
 #ifndef GPIO_H
 #define GPIO_H
 
-#define PIN_LAMPADA_1 17
-#define PIN_LAMPADA_2 18
-#define PIN_LAMPADA_3 27
-#define PIN_LAMPADA_4 22
+#define PIN_LAMPADA_1 11
+#define PIN_LAMPADA_2 12
+#define PIN_LAMPADA_3 13
+#define PIN_LAMPADA_4 15
 
-#define PIN_AR_CONDICIONADO_1 13
-#define PIN_AR_CONDICIONADO_2 19
+#define PIN_AR_CONDICIONADO_1 33
+#define PIN_AR_CONDICIONADO_2 35
 
-#define PIN_PRESENCA_1 25
-#define PIN_PRESENCA_2 26
+#define PIN_PRESENCA_1 22
+#define PIN_PRESENCA_2 37
 
-#define PIN_ABERTURA_1 5
-#define PIN_ABERTURA_2 6
-#define PIN_ABERTURA_3 12
-#define PIN_ABERTURA_4 16
-#define PIN_ABERTURA_5 20
-#define PIN_ABERTURA_6 21
+#define PIN_ABERTURA_1 29
+#define PIN_ABERTURA_2 31
+#define PIN_ABERTURA_3 32
+#define PIN_ABERTURA_4 36
+#define PIN_ABERTURA_5 38
+#define PIN_ABERTURA_6 40
 
 #include <softPwm.h>
 #include <unistd.h>
@@ -29,7 +29,7 @@ using namespace std;
 
 void update_all_sensors();
 bool read_pin(int pin);
-
-void write_pin(int pin, bool value);
+void set_pin_modes();
+void write_pin(int pin, int value);
 
 #endif

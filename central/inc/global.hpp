@@ -5,7 +5,7 @@
 
 using namespace std;
 
-
+extern pid_t this_pid;
 extern string arCondicionado[2];
 extern string lampada[4];
 extern string presenca[2];

@@ -18,7 +18,8 @@ using namespace std;
 int main(int argc, char *argv[]) {
   // signal(SIGPIPE, SIG_IGN);
   bme280Init(1, 0x76);
-  wiringPiSetup();
+  wiringPiSetupGpio();
+  set_pin_modes();
 
   if (!string("-h").compare(argv[1]) || argc != 4) {
     cout << "Uso: ./bin/bin <Porta para ouvir> <IP servidor central> <Porta "

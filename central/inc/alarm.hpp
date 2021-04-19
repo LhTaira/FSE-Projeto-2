@@ -1,6 +1,8 @@
 #ifndef ALARM_H
 #define ALARM_H
 
+ #include <stdlib.h>
+
 #include "global.hpp"
 #include "log.hpp"
 

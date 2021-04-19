@@ -23,39 +23,39 @@ void TrataClienteTCP(int socketCliente) {
 
   if (message.compare(string("l1")) == 0) {
     if (lampada[0]) {
-      write_pin(PIN_LAMPADA_1, false);
+      write_pin(PIN_LAMPADA_1, 0);
     } else {
-      write_pin(PIN_LAMPADA_1, true);
+      write_pin(PIN_LAMPADA_1, 1);
     }
   } else if (message.compare(string("l2")) == 0) {
     if (lampada[1]) {
-      write_pin(PIN_LAMPADA_2, false);
+      write_pin(PIN_LAMPADA_2, 0);
     } else {
-      write_pin(PIN_LAMPADA_2, true);
+      write_pin(PIN_LAMPADA_2, 1);
     }
   } else if (message.compare(string("l3")) == 0) {
     if (lampada[1]) {
-      write_pin(PIN_LAMPADA_3, false);
+      write_pin(PIN_LAMPADA_3, 0);
     } else {
-      write_pin(PIN_LAMPADA_3, true);
+      write_pin(PIN_LAMPADA_3, 1);
     }
   } else if (message.compare(string("l4")) == 0) {
     if (lampada[1]) {
-      write_pin(PIN_LAMPADA_4, false);
+      write_pin(PIN_LAMPADA_4, 0);
     } else {
-      write_pin(PIN_LAMPADA_4, true);
+      write_pin(PIN_LAMPADA_4, 1);
     }
   } else if (message.compare(string("a1")) == 0) {
     if (arCondicionado[0]) {
-      write_pin(PIN_AR_CONDICIONADO_1, false);
+      write_pin(PIN_AR_CONDICIONADO_1, 0);
     } else {
-      write_pin(PIN_AR_CONDICIONADO_1, true);
+      write_pin(PIN_AR_CONDICIONADO_1, 1);
     }
   } else if (message.compare(string("a2")) == 0) {
     if (arCondicionado[1]) {
-      write_pin(PIN_AR_CONDICIONADO_2, false);
+      write_pin(PIN_AR_CONDICIONADO_2, 0);
     } else {
-      write_pin(PIN_AR_CONDICIONADO_2, true);
+      write_pin(PIN_AR_CONDICIONADO_2, 1);
     }
   }
   //  else if (buffer[0] == 'a') {

@@ -33,7 +33,7 @@ void TrataClienteTCP(int socketCliente) {
       }
     }
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 4; i++) {
       if (buffer[j++] == 't') {
         lampada[i] = "Ligado";
       } else {
@@ -98,7 +98,7 @@ void server(unsigned short servidorPorta) {
 
     TrataClienteTCP(socketCliente);
     close(socketCliente);
-    kill(getppid(), SIGUSR1);
+    kill(this_pid, SIGUSR1);
   }
   close(servidorSocket);
 }

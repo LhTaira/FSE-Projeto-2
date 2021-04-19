@@ -4,7 +4,8 @@ using namespace std;
 
 bool read_pin(int pin) { return (bool)digitalRead(pin); }
 
-void update_all_sensors() {
+void update_all_sensors()
+{
   presenca[0] = read_pin(PIN_PRESENCA_1);
   presenca[1] = read_pin(PIN_PRESENCA_2);
 
@@ -16,4 +17,18 @@ void update_all_sensors() {
   abertura[5] = read_pin(PIN_ABERTURA_6);
 }
 
-void write_pin(int pin, bool value) { pwmWrite(pin, int(value)); }
+void set_pin_modes()
+{
+  pinMode(PIN_LAMPADA_1, OUTPUT);
+  pinMode(PIN_LAMPADA_2, OUTPUT);
+  pinMode(PIN_LAMPADA_3, OUTPUT);
+  pinMode(PIN_LAMPADA_4, OUTPUT);
+  pinMode(PIN_AR_CONDICIONADO_1, OUTPUT);
+  pinMode(PIN_AR_CONDICIONADO_2, OUTPUT);
+}
+
+void write_pin(int pin, int value)
+{
+  digitalWrite(pin, value);
+  usleep(10000);
+}
