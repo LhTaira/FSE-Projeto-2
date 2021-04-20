@@ -32,7 +32,7 @@ void verify_alarm(int sig)
     // set_off_alarm
     try
     {
-      system("omxplayer alarm.mp3")
+      system("omxplayer alarm.mp3");
     }
     catch (...)
     {

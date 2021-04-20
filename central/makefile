@@ -10,12 +10,9 @@ SRC = $(wildcard $(SRCDIR)/*.cpp)
 OBJ = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 EXE = bin/bin
 
-ifeq (run,$(firstword $(MAKECMDGOALS)))
-	# use the rest as arguments for "run"
-	RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-	# ...and turn them into do-nothing targets
-	$(eval $(RUN_ARGS):;@:)
-endif
+IP_DISTRIBUIDO = 192.168.0.52
+PORTA1 = 10029
+PORTA2 = 10129
 
 all:	clean $(EXE) 
 
@@ -32,4 +29,4 @@ clean:
 
 .PHONY: run
 run : $(EXE)
-	@ echo $(EXE) $(RUN_ARGS)
+	/.$(EXE) $(PORTA2) $(IP_DISTRIBUIDO) $(PORTA1)

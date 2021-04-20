@@ -1,7 +1,7 @@
 #include <string.h>
 #include <time.h>
 #include <wiringPi.h>
-// #include <signal.h>
+#include <unistd.h>
 
 #include <iostream>
 #include <string>
@@ -33,7 +33,9 @@ int main(int argc, char *argv[]) {
   porta_central = (unsigned short)atoi(argv[3]);
 
   thread t(server, porta_ouvir);
+  setup_watchers();
 
+  pause();
   time_t timer, timer2;
   time(&timer);
   while (1) {

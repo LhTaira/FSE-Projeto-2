@@ -51,21 +51,21 @@ void make_and_send_message(string IP_servidor, unsigned short servidorPorta) {
     }
   }
 
-  for (int i = 0; i < 2; i++) {
-    if (presenca[i]) {
-      code[j++] = 't';
-    } else {
-      code[j++] = 'f';
-    }
-  }
+  // for (int i = 0; i < 2; i++) {
+  //   if (presenca[i]) {
+  //     code[j++] = 't';
+  //   } else {
+  //     code[j++] = 'f';
+  //   }
+  // }
 
-  for (int i = 0; i < 6; i++) {
-    if (abertura[i]) {
-      code[j++] = 't';
-    } else {
-      code[j++] = 'f';
-    }
-  }
+  // for (int i = 0; i < 6; i++) {
+  //   if (abertura[i]) {
+  //     code[j++] = 't';
+  //   } else {
+  //     code[j++] = 'f';
+  //   }
+  // }
 
   // if (alarme) {
   //   code[j++] = 't';

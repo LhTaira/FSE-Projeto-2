@@ -2,7 +2,8 @@
 
 using namespace std;
 
-void TrataClienteTCP(int socketCliente) {
+void TrataClienteTCP(int socketCliente)
+{
   char buffer[16];
   int tamanhoRecebido;
   int j = 0;
@@ -10,7 +11,8 @@ void TrataClienteTCP(int socketCliente) {
   if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
     cout << "Erro no rcv()" << endl;
 
-  while (tamanhoRecebido > 0) {
+  while (tamanhoRecebido > 0)
+  {
     if (send(socketCliente, buffer, tamanhoRecebido, 0) != tamanhoRecebido)
       cout << "Erro no envio - send() " << endl;
     // printf("%s\n", buffer);
@@ -18,44 +20,81 @@ void TrataClienteTCP(int socketCliente) {
       cout << "Erro no rcv()" << endl;
   }
 
-  if (buffer[0] == 'e') {
+  if (buffer[0] == 'e')
+  {
     buffer[6] = '\0';
     temperatura = string(&buffer[1]);
-  } else if (buffer[0] == 'u') {
+  }
+  else if (buffer[0] == 'u')
+  {
     buffer[6] = '\0';
     umidade = string(&buffer[1]);
-  } else {
-    for (int i = 0; i < 2; i++) {
-      if (buffer[j++] == 't') {
+  }
+  else if (buffer[0] == 'A')
+  {
+    if(buffer[2] == 't') {
+      abertura[int(buffer[1])] == "Ligado";
+    } else {
+      abertura[int(buffer[1])] == "Desligado";
+    }
+  }
+  else if (buffer[0] == 'P')
+  {
+    if(buffer[2] == 't') {
+      presenca[int(buffer[1])] == "Ligado";
+    } else {
+      presenca[int(buffer[1])] == "Desligado";
+    }
+  }
+  else
+  {
+    for (int i = 0; i < 2; i++)
+    {
+      if (buffer[j++] == 't')
+      {
         arCondicionado[i] = "Ligado";
-      } else {
+      }
+      else
+      {
         arCondicionado[i] = "Desligado";
       }
     }
 
-    for (int i = 0; i < 4; i++) {
-      if (buffer[j++] == 't') {
+    for (int i = 0; i < 4; i++)
+    {
+      if (buffer[j++] == 't')
+      {
         lampada[i] = "Ligado";
-      } else {
+      }
+      else
+      {
         lampada[i] = "Desligado";
       }
     }
 
-    for (int i = 0; i < 2; i++) {
-      if (buffer[j++] == 't') {
-        presenca[i] = "Ligado";
-      } else {
-        presenca[i] = "Desligado";
-      }
-    }
+    // for (int i = 0; i < 2; i++)
+    // {
+    //   if (buffer[j++] == 't')
+    //   {
+    //     presenca[i] = "Ligado";
+    //   }
+    //   else
+    //   {
+    //     presenca[i] = "Desligado";
+    //   }
+    // }
 
-    for (int i = 0; i < 6; i++) {
-      if (buffer[j++] == 't') {
-        abertura[i] = "Ligado";
-      } else {
-        abertura[i] = "Desligado";
-      }
-    }
+    // for (int i = 0; i < 6; i++)
+    // {
+    //   if (buffer[j++] == 't')
+    //   {
+    //     abertura[i] = "Ligado";
+    //   }
+    //   else
+    //   {
+    //     abertura[i] = "Desligado";
+    //   }
+    // }
 
     // if (buffer[j] == 't') {
     //   alarme = "Ligado";
@@ -65,7 +104,8 @@ void TrataClienteTCP(int socketCliente) {
   }
 }
 
-void server(unsigned short servidorPorta) {
+void server(unsigned short servidorPorta)
+{
   signal(SIGUSR1, SIG_IGN);
   int servidorSocket;
   int socketCliente;
@@ -86,9 +126,12 @@ void server(unsigned short servidorPorta) {
            sizeof(servidorAddr)) < 0)
     cout << "Falha no bind" << endl;
 
-  if (listen(servidorSocket, 10) < 0) cout << "Falha no Listen" << endl;
+  if (listen(servidorSocket, 10) < 0)
+    cout << "Falha no Listen" << endl;
 
-  while (1) {
+  while (1)
+  {
+    // usleep(10000);
     clienteLength = sizeof(clienteAddr);
     if ((socketCliente = accept(servidorSocket, (struct sockaddr *)&clienteAddr,
                                 &clienteLength)) < 0)

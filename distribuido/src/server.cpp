@@ -57,6 +57,8 @@ void TrataClienteTCP(int socketCliente) {
     } else {
       write_pin(PIN_AR_CONDICIONADO_2, 1);
     }
+  }else{
+    cout << "shits wrong\n";
   }
   //  else if (buffer[0] == 'a') {
   //   if (alarme) {
@@ -90,6 +92,7 @@ void server(unsigned short servidorPorta) {
   if (listen(servidorSocket, 10) < 0) cout << "Falha no Listen" << endl;
 
   while (1) {
+    // usleep(10000);
     clienteLength = sizeof(clienteAddr);
     if ((socketCliente = accept(servidorSocket, (struct sockaddr *)&clienteAddr,
                                 &clienteLength)) < 0)

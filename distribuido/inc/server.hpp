@@ -15,6 +15,7 @@
 
 using namespace std;
 
+void TrataClienteTCP(int socketCliente);
 void server(unsigned short servidorPorta);
 
 #endif

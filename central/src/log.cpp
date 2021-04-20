@@ -4,7 +4,7 @@ using namespace std;
 
 void createLog() {
   FILE *log;
-  log = fopen("log.csv", "w");
+  log = fopen("log.csv", "r");
   fseek(log, 0, SEEK_END);
   int size = ftell(log);
   if (size == 0) {
