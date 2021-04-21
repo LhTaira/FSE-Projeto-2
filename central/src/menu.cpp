@@ -30,7 +30,7 @@ void print_menu(WINDOW *menu_win, int highlight) {
   int x, y, i;
 
   x = 2;
-  y = 2;
+  y = 1;
   box(menu_win, 0, 0);
   for (i = 0; i < n_choices; ++i) {
     if (highlight == i + 1) /* High light the present choice */
@@ -50,18 +50,18 @@ void print_info() {
   mvprintw(3, 0, "                                ");
   mvprintw(4, 0, "                                ");
   mvprintw(5, 0, "                                ");
-  mvprintw(6, 0, "                                ");
-  mvprintw(7, 0, "                                ");
+  // mvprintw(6, 0, "                                ");
+  // mvprintw(7, 0, "                                ");
 
-  mvprintw(2, 20, "                                ");
-  mvprintw(3, 20, "                                ");
-  mvprintw(4, 20, "                                ");
-  mvprintw(5, 20, "                                ");
+  mvprintw(2, 25, "                                ");
+  mvprintw(3, 25, "                                ");
+  mvprintw(4, 25, "                                ");
+  mvprintw(5, 25, "                                ");
 
-  mvprintw(2, 45, "                                ");
-  mvprintw(3, 45, "                                ");
-  mvprintw(4, 45, "                                ");
-  mvprintw(5, 45, "                                ");
+  // mvprintw(2, 45, "                                ");
+  // mvprintw(3, 45, "                                ");
+  // mvprintw(4, 45, "                                ");
+  // mvprintw(5, 45, "                                ");
 
   mvprintw(10, 0, "                 ");
   mvprintw(11, 0, "                 ");
@@ -73,16 +73,16 @@ void print_info() {
   // mvprintw(5, 0, "L2: %s", lampada[1].c_str());
   // mvprintw(6, 0, "L3: %s", lampada[2].c_str());
   // mvprintw(7, 0, "L4: %s", lampada[3].c_str());
-
+  refresh();
   mvprintw(2, 0, "Presenca1: %s", presenca[0].c_str());
   mvprintw(3, 0, "Presenca2: %s", presenca[1].c_str());
   mvprintw(4, 0, "Abertura1: %s", abertura[0].c_str());
   mvprintw(5, 0, "Abertura2: %s", abertura[1].c_str());
 
-  mvprintw(2, 20, "Abertura3: %s", abertura[2].c_str());
-  mvprintw(3, 20, "Abertura4: %s", abertura[3].c_str());
-  mvprintw(4, 20, "Abertura5: %s", abertura[4].c_str());
-  mvprintw(5, 20, "Abertura6: %s", abertura[5].c_str());
+  mvprintw(2, 25, "Abertura3: %s", abertura[2].c_str());
+  mvprintw(3, 25, "Abertura4: %s", abertura[3].c_str());
+  mvprintw(4, 25, "Abertura5: %s", abertura[4].c_str());
+  mvprintw(5, 25, "Abertura6: %s", abertura[5].c_str());
 
   mvprintw(10, 0, "Alarme: %s", alarme.c_str());
 

@@ -51,7 +51,7 @@ void TrataClienteTCP(int socketCliente) {
       lampada[3] = false;
     } else {
       write_pin(PIN_LAMPADA_4, 1);
-      lampada[3] = false;
+      lampada[3] = true;
     }
   } else if (message.compare(string("a1")) == 0) {
     if (arCondicionado[0]) {

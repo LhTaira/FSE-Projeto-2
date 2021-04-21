@@ -57,7 +57,7 @@ void watch_ab1(void) {
   if (read_pin(PIN_ABERTURA_1)) {
     send_message(ip_central, porta_central, "A1t");
   } else {
-    send_message(ip_central, porta_central, "ab1f");
+    send_message(ip_central, porta_central, "A1f");
   }
   wiringPiISR(PIN_ABERTURA_1, INT_EDGE_BOTH, &watch_ab1);
   return;

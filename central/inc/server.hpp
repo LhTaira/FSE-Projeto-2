@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "global.hpp"
+#include "alarm.hpp"
 
 using namespace std;
 

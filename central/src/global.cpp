@@ -8,9 +8,9 @@ string arCondicionado[2];
 string lampada[4];
 string presenca[2];
 string abertura[6];
-string alarme;
+string alarme = "Desligado";
 bool sound_alarm = false;
-bool previous_sound_alarm = false;
+// bool previous_sound_alarm = false;
 
 string temperatura;
 string umidade;

@@ -5,7 +5,7 @@ using namespace std;
 void TrataClienteTCP(int socketCliente) {
   char buffer[16];
   int tamanhoRecebido;
-  int j = 0;
+  // int j = 0;
 
   if ((tamanhoRecebido = recv(socketCliente, buffer, 16, 0)) < 0)
     cout << "Erro no rcv()" << endl;
@@ -26,18 +26,19 @@ void TrataClienteTCP(int socketCliente) {
     umidade = string(&buffer[1]);
   } else if (buffer[0] == 'A') {
     if (buffer[2] == 't') {
-      abertura[int(buffer[1]) - '0'] = "Ligado";
+      abertura[int(buffer[1]) - '0' - 1] = "Ligado";
     } else {
-      abertura[int(buffer[1]) - '0'] = "Desligado";
+      abertura[int(buffer[1]) - '0' - 1] = "Desligado";
     }
+    verify_alarm();
   } else if (buffer[0] == 'P') {
     if (buffer[2] == 't') {
       // cout << int(buffer[1]) - '0' << " " << presenca[int(buffer[1]) - '0'] << endl;
-      presenca[int(buffer[1]) - '0'] = "Ligado";
+      presenca[int(buffer[1]) - '0' - 1] = "Ligado";
     } else {
-      presenca[int(buffer[1]) - '0'] = "Desligado";
+      presenca[int(buffer[1]) - '0' - 1] = "Desligado";
     }
-  } else {
+    verify_alarm();
   }
 }
 
@@ -75,7 +76,7 @@ void server(unsigned short servidorPorta) {
 
     TrataClienteTCP(socketCliente);
     close(socketCliente);
-    kill(this_pid, SIGUSR1);
+    // kill(this_pid, SIGUSR1); 
   }
   close(servidorSocket);
 }
