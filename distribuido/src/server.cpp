@@ -24,41 +24,53 @@ void TrataClienteTCP(int socketCliente) {
   if (message.compare(string("l1")) == 0) {
     if (lampada[0]) {
       write_pin(PIN_LAMPADA_1, 0);
+      lampada[0] = false;
     } else {
       write_pin(PIN_LAMPADA_1, 1);
+      lampada[0] = true;
     }
   } else if (message.compare(string("l2")) == 0) {
     if (lampada[1]) {
       write_pin(PIN_LAMPADA_2, 0);
+      lampada[1] = false;
     } else {
       write_pin(PIN_LAMPADA_2, 1);
+      lampada[1] = true;
     }
   } else if (message.compare(string("l3")) == 0) {
-    if (lampada[1]) {
+    if (lampada[2]) {
       write_pin(PIN_LAMPADA_3, 0);
+      lampada[2] = false;
     } else {
       write_pin(PIN_LAMPADA_3, 1);
+      lampada[2] = true;
     }
   } else if (message.compare(string("l4")) == 0) {
-    if (lampada[1]) {
+    if (lampada[3]) {
       write_pin(PIN_LAMPADA_4, 0);
+      lampada[3] = false;
     } else {
       write_pin(PIN_LAMPADA_4, 1);
+      lampada[3] = false;
     }
   } else if (message.compare(string("a1")) == 0) {
     if (arCondicionado[0]) {
       write_pin(PIN_AR_CONDICIONADO_1, 0);
+      arCondicionado[0] = false;
     } else {
       write_pin(PIN_AR_CONDICIONADO_1, 1);
+      arCondicionado[0] = true;
     }
   } else if (message.compare(string("a2")) == 0) {
     if (arCondicionado[1]) {
       write_pin(PIN_AR_CONDICIONADO_2, 0);
+      arCondicionado[1] = false;
     } else {
       write_pin(PIN_AR_CONDICIONADO_2, 1);
+      arCondicionado[1] = true;
     }
   }else{
-    cout << "shits wrong\n";
+    cout << "wrong\n";
   }
   //  else if (buffer[0] == 'a') {
   //   if (alarme) {

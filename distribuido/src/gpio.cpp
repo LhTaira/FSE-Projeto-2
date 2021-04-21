@@ -4,21 +4,34 @@ using namespace std;
 
 bool read_pin(int pin) { return (bool)digitalRead(pin); }
 
-void update_all_sensors()
-{
-  presenca[0] = read_pin(PIN_PRESENCA_1);
-  presenca[1] = read_pin(PIN_PRESENCA_2);
+void update_and_setup() {
+  watch_pr1();
+  watch_pr2();
+  watch_ab1();
+  watch_ab2();
+  watch_ab3();
+  watch_ab4();
+  watch_ab5();
+  watch_ab6();
 
-  abertura[0] = read_pin(PIN_ABERTURA_1);
-  abertura[1] = read_pin(PIN_ABERTURA_2);
-  abertura[2] = read_pin(PIN_ABERTURA_3);
-  abertura[3] = read_pin(PIN_ABERTURA_4);
-  abertura[4] = read_pin(PIN_ABERTURA_5);
-  abertura[5] = read_pin(PIN_ABERTURA_6);
+  write_pin(PIN_AR_CONDICIONADO_1, 0);
+  write_pin(PIN_AR_CONDICIONADO_2, 0);
+
+  write_pin(PIN_LAMPADA_1, 0);
+  write_pin(PIN_LAMPADA_2, 0);
+  write_pin(PIN_LAMPADA_3, 0);
+  write_pin(PIN_LAMPADA_4, 0);
+
+  for(int i=0; i<4; i++) {
+    lampada[i] = false;
+  }
+
+  for(int i=0; i<2; i++) {
+    arCondicionado[i] = false;
+  }
 }
 
-void set_pin_modes()
-{
+void set_pin_modes() {
   pinMode(PIN_PRESENCA_1, INPUT);
   pinMode(PIN_PRESENCA_2, INPUT);
   pinMode(PIN_ABERTURA_1, INPUT);
@@ -36,129 +49,95 @@ void set_pin_modes()
   pinMode(PIN_AR_CONDICIONADO_2, OUTPUT);
 }
 
-void write_pin(int pin, int value)
-{
+void write_pin(int pin, int value) {
   digitalWrite(pin, value);
   usleep(10000);
 }
-void watch_ab1(void)
-{
-  if (read_pin(PIN_ABERTURA_1))
-  {
+void watch_ab1(void) {
+  if (read_pin(PIN_ABERTURA_1)) {
     send_message(ip_central, porta_central, "A1t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "ab1f");
   }
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_1, INT_EDGE_BOTH, &watch_ab1);
   return;
 }
 
-void watch_ab2(void)
-{
-  if (read_pin(PIN_ABERTURA_2))
-  {
+void watch_ab2(void) {
+  if (read_pin(PIN_ABERTURA_2)) {
     send_message(ip_central, porta_central, "A2t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "A2f");
   }
 
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_2, INT_EDGE_BOTH, &watch_ab2);
   return;
 }
 
-void watch_ab3(void)
-{
-  if (read_pin(PIN_ABERTURA_3))
-  {
+void watch_ab3(void) {
+  if (read_pin(PIN_ABERTURA_3)) {
     send_message(ip_central, porta_central, "A3t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "A3f");
   }
 
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_3, INT_EDGE_BOTH, &watch_ab3);
   return;
 }
 
-void watch_ab4(void)
-{
-  if (read_pin(PIN_ABERTURA_4))
-  {
+void watch_ab4(void) {
+  if (read_pin(PIN_ABERTURA_4)) {
     send_message(ip_central, porta_central, "A4t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "A4f");
   }
 
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_4, INT_EDGE_BOTH, &watch_ab4);
   return;
 }
 
-void watch_ab5(void)
-{
-  if (read_pin(PIN_ABERTURA_5))
-  {
+void watch_ab5(void) {
+  if (read_pin(PIN_ABERTURA_5)) {
     send_message(ip_central, porta_central, "A5t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "A5f");
   }
 
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_5, INT_EDGE_BOTH, &watch_ab5);
   return;
 }
 
-void watch_ab6(void)
-{
-  if (read_pin(PIN_ABERTURA_6))
-  {
+void watch_ab6(void) {
+  if (read_pin(PIN_ABERTURA_6)) {
     send_message(ip_central, porta_central, "A6t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "A6f");
   }
 
-  setup_watchers();
+  wiringPiISR(PIN_ABERTURA_6, INT_EDGE_BOTH, &watch_ab6);
   return;
 }
 
-void watch_pr1(void)
-{
-  if (read_pin(PIN_PRESENCA_1))
-  {
+void watch_pr1(void) {
+  if (read_pin(PIN_PRESENCA_1)) {
     send_message(ip_central, porta_central, "P1t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "P1f");
   }
-  setup_watchers();
+  wiringPiISR(PIN_PRESENCA_1, INT_EDGE_BOTH, &watch_pr1);
   return;
 }
-void watch_pr2(void)
-{
-  if (read_pin(PIN_PRESENCA_2))
-  {
+void watch_pr2(void) {
+  if (read_pin(PIN_PRESENCA_2)) {
     send_message(ip_central, porta_central, "P2t");
-  }
-  else
-  {
+  } else {
     send_message(ip_central, porta_central, "P2f");
   }
-  setup_watchers();
+  wiringPiISR(PIN_PRESENCA_2, INT_EDGE_BOTH, &watch_pr2);
   return;
 }
 
-void setup_watchers()
-{
+void setup_watchers() {
   wiringPiISR(PIN_PRESENCA_1, INT_EDGE_BOTH, &watch_pr1);
   wiringPiISR(PIN_PRESENCA_2, INT_EDGE_BOTH, &watch_pr2);
 

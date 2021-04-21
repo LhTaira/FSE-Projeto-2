@@ -29,7 +29,7 @@
 
 using namespace std;
 
-void update_all_sensors();
+void update_and_setup();
 bool read_pin(int pin);
 void set_pin_modes();
 void write_pin(int pin, int value);

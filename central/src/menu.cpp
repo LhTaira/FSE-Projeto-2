@@ -67,22 +67,22 @@ void print_info() {
   mvprintw(11, 0, "                 ");
   mvprintw(12, 0, "                 ");
 
-  mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
-  mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
-  mvprintw(4, 0, "L1: %s", lampada[0].c_str());
-  mvprintw(5, 0, "L2: %s", lampada[1].c_str());
-  mvprintw(6, 0, "L3: %s", lampada[2].c_str());
-  mvprintw(7, 0, "L4: %s", lampada[3].c_str());
+  // mvprintw(2, 0, "AC1: %s", arCondicionado[0].c_str());
+  // mvprintw(3, 0, "AC2: %s", arCondicionado[1].c_str());
+  // mvprintw(4, 0, "L1: %s", lampada[0].c_str());
+  // mvprintw(5, 0, "L2: %s", lampada[1].c_str());
+  // mvprintw(6, 0, "L3: %s", lampada[2].c_str());
+  // mvprintw(7, 0, "L4: %s", lampada[3].c_str());
 
-  mvprintw(2, 20, "Presenca1: %s", presenca[0].c_str());
-  mvprintw(3, 20, "Presenca2: %s", presenca[1].c_str());
-  mvprintw(4, 20, "Abertura1: %s", abertura[0].c_str());
-  mvprintw(5, 20, "Abertura2: %s", abertura[1].c_str());
+  mvprintw(2, 0, "Presenca1: %s", presenca[0].c_str());
+  mvprintw(3, 0, "Presenca2: %s", presenca[1].c_str());
+  mvprintw(4, 0, "Abertura1: %s", abertura[0].c_str());
+  mvprintw(5, 0, "Abertura2: %s", abertura[1].c_str());
 
-  mvprintw(2, 45, "Abertura3: %s", abertura[2].c_str());
-  mvprintw(3, 45, "Abertura4: %s", abertura[3].c_str());
-  mvprintw(4, 45, "Abertura5: %s", abertura[4].c_str());
-  mvprintw(5, 45, "Abertura6: %s", abertura[5].c_str());
+  mvprintw(2, 20, "Abertura3: %s", abertura[2].c_str());
+  mvprintw(3, 20, "Abertura4: %s", abertura[3].c_str());
+  mvprintw(4, 20, "Abertura5: %s", abertura[4].c_str());
+  mvprintw(5, 20, "Abertura6: %s", abertura[5].c_str());
 
   mvprintw(10, 0, "Alarme: %s", alarme.c_str());
 

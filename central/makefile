@@ -28,5 +28,5 @@ clean:
 
 
 .PHONY: run
-run : $(EXE)
-	/.$(EXE) $(PORTA2) $(IP_DISTRIBUIDO) $(PORTA1)
+run : 
+	./$(EXE) $(PORTA2) $(IP_DISTRIBUIDO) $(PORTA1)

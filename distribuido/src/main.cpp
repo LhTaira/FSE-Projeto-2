@@ -18,7 +18,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
   // signal(SIGPIPE, SIG_IGN);
   bme280Init(1, 0x76);
-  wiringPiSetupGpio();
+  wiringPiSetup();
   set_pin_modes();
 
   if (!string("-h").compare(argv[1]) || argc != 4) {
@@ -33,9 +33,11 @@ int main(int argc, char *argv[]) {
   porta_central = (unsigned short)atoi(argv[3]);
 
   thread t(server, porta_ouvir);
-  setup_watchers();
+  // update_all_sensors();
+  // make_and_send_message(ip_central, porta_central);
+  update_and_setup();
 
-  pause();
+  // pause();
   time_t timer, timer2;
   time(&timer);
   while (1) {
@@ -46,8 +48,6 @@ int main(int argc, char *argv[]) {
     time(&timer);
 
     get_bme();
-    update_all_sensors();
-    make_and_send_message(ip_central, porta_central);
     make_temperature_humidity_message(ip_central, porta_central);
   }
 }
